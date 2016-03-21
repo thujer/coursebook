@@ -33,7 +33,7 @@
     } else {
         ?>
         <tr>
-            <td>Nebyli nalezeni žádní spolužáci ze stejných kurzů</td>
+            <td>Nebyli nalezeni žádné osoby ze stejných setkání</td>
         </tr>
         <?php
     }

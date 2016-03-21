@@ -1,5 +1,5 @@
- CourseBook
+ MeetingBook
 ===============
 
-Simple application for courses people reservation
+Simple application for people meeting reservation
 

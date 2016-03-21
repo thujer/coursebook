@@ -4,6 +4,6 @@
 ?>
 
 <div class="page-header">
-    <h1>Přehled kurzů a přihlášených osob</h1>
+    <h1>Přehled setkání a přihlášených osob</h1>
 </div>
-<a href="/course/list">Zobrazit všechny kurzy</a>
+<a href="/meeting/list">Aktuálně pořádaná setkání</a>

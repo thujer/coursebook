@@ -46,7 +46,7 @@
         </div>
 
         <div id="footer">
-            <span id="copyleft" title="thujer at gmail dot com">© 2016 Tomas Hujer</span>
+            <span id="copyleft" title="thujer at gmail dot com">© 2016 <a href="http://tomas.hujer.eu" target="_blank">Tomas Hujer</a></span>
         </div>
 
     </div>

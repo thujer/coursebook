@@ -6,7 +6,7 @@
     $a_person_standin = $this->a_template['a_person_standin'];
 ?>
 
-<h1>Zájemci o kurz</h1>
+<h1>Zájemci o setkání</h1>
 <br />
 <h2>Účastníci</h2>
 <table class="table table-hover">
