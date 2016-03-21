@@ -4,6 +4,6 @@
 ?>
 
 <div class="page-header">
-    <h1>Přehled žáků a zájmových kroužků</h1>
+    <h1>Přehled kurzů a přihlášených osob</h1>
 </div>
-<a href="/person/list">Zobrazit všechny žáky</a>
+<a href="/course/list">Zobrazit všechny kurzy</a>

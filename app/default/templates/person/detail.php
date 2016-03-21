@@ -11,12 +11,12 @@
     <h1><?=$o_child->s_name;?> <?=$o_child->s_lastname;?> (<?=$o_child->e_gender;?>, <?=$o_child->nl_age;?> <?=$s_age_caption;?>)</h1>
 </div>
 
-<h2>Navštěvované zájmové kroužky</h2>
+<h2>Zájmy</h2>
 <table class="table table-responsive table-hover">
     <thead>
         <tr>
             <th class="width-sm">Číslo</th>
-            <th class="width-sm">Vlajka</th>
+            <th class="width-sm">Ikona</th>
             <th>Název</th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
         <?php
         }
     } else {
-        ?><tr><td colspan="4">Nebyl nalezen žádný navštěvovaný kroužek</td></tr><?php
+        ?><tr><td colspan="4">Nebyla nalezena žádná oblast zájmu</td></tr><?php
     }
     ?>
     </tbody>
@@ -43,12 +43,12 @@
 
 <hr />
 
-<h2>Spolužáci ze zájmových kroužků</h2>
+<h2>Osoby s podobnými zájmy</h2>
 <div data-id="classmate">
-    <a href="#" data-id="load_classmate">Vyhledat spolužáky ze společných zájmových kroužků</a>
+    <a href="#" data-id="load_classmate">Vyhledat osoby s podobnými zájmy</a>
 </div>
 <hr />
-<a href="/person/list" data-id="load_all">Zobrazit všechny žáky</a>
+<a href="/person/list" data-id="load_all">Zobrazit přehled zájemců</a>
 
 <script type="text/javascript">
 

@@ -8,7 +8,7 @@
     if(!defined('DS'))
         define('DS',                            DIRECTORY_SEPARATOR);
     
-    define('CONFIG_APP_NAME',                   'SchoolMates');                         // Textový název aplikace, použito jako default title
+    define('CONFIG_APP_NAME',                   'Kurzy');                               // Textový název aplikace, použito jako default title
     define('CONFIG_APP_ID',                     'default');                             // subdir aplikace /app/<subdir>
 
     error_reporting(E_ALL ^ E_NOTICE);
@@ -28,8 +28,8 @@
     define('CONFIG_WEB_OFFLINE',                0);                                      // 1=web je offline, probiha aktualizace
 
     define('CONFIG_DEFAULT_TITLE',              CONFIG_APP_NAME);
-    define('CONFIG_DEFAULT_KEYWORDS',           'Tomas Hujer, testovaci aplikace, ukazka kodu');
-    define('CONFIG_DEFAULT_DESCRIPTION',        'Tomas Hujer, testovací aplikace, ukázka kódu');
+    define('CONFIG_DEFAULT_KEYWORDS',           'Přihlášení zájemců na kurz');
+    define('CONFIG_DEFAULT_DESCRIPTION',        'Přihlášení zájemců na kurz');
     define('CONFIG_DEFAULT_ROBOTS',             'noindex, follow');
     define('CONFIG_DEFAULT_CONTENT_TYPE',       'text/html; charset=UTF-8');
     define('CONFIG_DEFAULT_FAVICON',            'favicon.ico');

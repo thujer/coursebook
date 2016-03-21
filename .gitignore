@@ -1,8 +1,10 @@
 .idea
 .log
 .backup
+.inspiration
 stats
 db_config.php
 db_export.sh
+config/app_config.php
 vendors/php-activerecord/examples
 vendors/php-activerecord/test

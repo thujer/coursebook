@@ -81,11 +81,18 @@ class person extends controller {
             layout::get_instance()->disable();
 
         // Get persons
-        $a_person = $db->call_stored_proc('get_person_list', array(
+        $a_person = $db->call_stored_proc('get_person_course_group_list', array(
+            nl_id_course_group => 1
+        ));
+
+        // Get stand-in persons
+        $a_person_standin = $db->call_stored_proc('get_person_course_group_list', array(
+            nl_id_course_group => 2
         ));
 
         return $this->render_view(array(
             'a_person' => $a_person[0]['result'],
+            'a_person_standin' => $a_person_standin[0]['result'],
         ));
     }
 

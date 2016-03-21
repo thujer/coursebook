@@ -16,7 +16,6 @@
         <meta name="author" content="<?=$this->a_template['web_author'];?>" />
         <meta name="googlebot" content="nosnippet, noarchive">
         <meta name="robots" content="<?=$this->a_template['robots'];?>" />
-        <meta name="alexaVerifyID" content="gg_ALYebFpzYDrTE2tjaDZU_90I" />
 
         <title><?=$this->a_template['title'];?></title>
 
@@ -47,7 +46,7 @@
         </div>
 
         <div id="footer">
-            <span id="copyleft" title="thujer at gmail dot com">© 2014 Tomas Hujer</span>
+            <span id="copyleft" title="thujer at gmail dot com">© 2016 Tomas Hujer</span>
         </div>
 
     </div>

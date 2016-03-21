@@ -2,10 +2,36 @@
 
     namespace Runtime\App\Template;
 
+    $o_result = $this->a_template['o_result'];
     $a_person = $this->a_template['a_person'];
     $a_person_standin = $this->a_template['a_person_standin'];
 ?>
 
+<div class="page-header">
+    <h1><?=$o_result->s_name;?></h1>
+</div>
+
+<h2>Detail kurzu</h2>
+<table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th class="width-sm">Číslo</th>
+            <th>Název</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?=$o_result->id_course;?></td>
+            <td><?=$o_result->s_name;?></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<a href="/course/list" data-id="load_all">Zobrazit přehled kurzů</a>
+
+<hr />
 <h1>Zájemci o kurz</h1>
 <br />
 <h2>Účastníci</h2>
@@ -76,7 +102,23 @@
     ?>
 </table>
 
+
+
 <script type="text/javascript">
+
+    $('*[data-id="load_all"]').click(function(e) {
+        $.ajax( {
+            url: '/course/list',
+            data: {
+                b_ajax: true
+            },
+            success: function(response, status) {
+                $('*[data-id="content"]').html(response);
+            }
+        });
+        e.preventDefault();
+    })
+
 
     $('*[data-id="load_person"]').click(function(e) {
         var id_child = $(this).attr('data-item');

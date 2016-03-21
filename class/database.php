@@ -109,7 +109,7 @@
                         else
                             $a_result = $result;
 
-                        @$a_output[] = array(
+                        $a_output[] = array(
                             'num_rows' => $result->num_rows,
                             'current_field' => $result->current_field,
                             'field_count' => $result->field_count,
@@ -127,7 +127,7 @@
                 }
                 while(mysqli_more_results($o_db) && mysqli_next_result($o_db)); 
             } else {
-                @$a_output[] = array(
+                $a_output[] = array(
                     'error' => $o_db->error,
                     'query' => $query
                 );
@@ -137,6 +137,82 @@
 
             return $a_output;
 
-        }    
+        }
+
+
+        /**
+         * Example of JS Stored procedure wrapper
+         * @param o_conn
+         * @param s_proc_name
+         * @param o_param
+         * @param cb
+         */
+        /*
+        protected function mysql_proc(o_conn, s_proc_name, o_param, cb) {
+
+            var sql = "CALL ws_core_parameters ('" + s_proc_name + "', '" + o_mysql.db + "');";
+            o_conn.query(sql, function (err, rows) {
+                if (err) {
+                    console.log(sql);
+                    throw err;
+                }
+
+                var a_params = rows[0][0].param_list.toString().trim().split(',\r\n');
+                var s_proc_call = 'CALL '+s_proc_name+' (';
+
+                var b_first = true;
+                a_params.forEach(function(s_param_raw) {
+                    var a_param = s_param_raw.split(' ');
+                    var s_param_io = a_param[0];
+                    var s_param_name = a_param[1].substring(1);
+                    var s_param_type = a_param[2].replace(')', '').replace('(', ' ').split(' ')[0];
+
+                    var a_value = [];
+
+                    if(s_param_io == 'IN') {
+
+                        if((s_param_name in o_param) === true) {
+
+                            var s_value = o_param[s_param_name];
+                            //console.log(s_value, s_param_type, s_param_name);
+                            if(s_value === undefined) {
+                                s_value = 'NULL';
+                                s_param_type = '';
+                            }
+
+                            switch(s_param_type) {
+                                case 'int': a_value.push(s_value); break;
+                                case 'datetime':
+                                case 'varchar':
+                                case 'text':
+                                    a_value.push("'"+s_value+"'");
+                                    break;
+                                default: a_value.push(s_value);
+                            }
+
+                        } else {
+                            a_value.push('NULL');
+                        }
+
+                        a_value.forEach(function(s_value) {
+                            if(!b_first) {
+                                s_proc_call += ',';
+                            }
+                            b_first = false;
+                            s_proc_call += s_value;
+                        });
+                    }
+
+
+                });
+
+                s_proc_call += ');';
+
+                o_conn.query(s_proc_call, function (err, rows, sql) {
+                    cb(err, rows, sql);
+                });
+            });
+        }
+        */
 
     }
