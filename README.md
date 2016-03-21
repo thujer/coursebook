@@ -1,5 +1,5 @@
- SchoolMates
+ CourseBook
 ===============
 
-Simple application source code show
+Simple application for courses people reservation
 
