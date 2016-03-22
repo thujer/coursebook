@@ -74,4 +74,25 @@ class meeting extends controller {
         ));
     }
 
+    /**
+     * Store person detail
+     */
+    public function storePersonAction() {
+
+        $db = database::get_instance();
+
+        $b_ajax = request::get_var('b_ajax', 'REQUEST', 0);
+        if($b_ajax)
+            layout::get_instance()->disable();
+
+        //$a_result = $db->call_stored_proc('get_meeting_list', $_REQUEST);
+        $a_result = $db->proc('store_meeting_person', $_REQUEST);
+
+        print_r($a_result);
+    }
+
+
 }
+
+
+

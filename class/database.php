@@ -141,6 +141,166 @@
 
 
         /**
+         * Call stored procedure with params and retrieve multiresult
+         * @param $name array stored procedure name
+         * @param $a_params array stored procedure parameters
+         * @return array of result objects
+         */
+        /*
+        public function proc($name, $a_params) {
+
+            if(!defined('LN'))
+                define('LN', "\n");
+
+            $c = $this->get_config();
+
+            try {
+                $o_db = new \mysqli($c->db_host, $c->db_user, $c->db_pass, $c->db_name);
+
+                $o_db->query('SET CHARACTER SET utf8');
+                $o_db->set_charset('utf8');
+                $o_db->query("SET NAMES `utf8`");
+            } catch(\Exception $e) {
+                echo "Can't connect to database ".$c->db_name.' !';
+                return false;
+            }
+
+            $sql = "CALL get_core_parameters ('" . $name . "', '" . $c->db_name . "');";
+            print_r($sql);
+
+            $result = mysqli_query($o_db, $sql);
+            if($result) {
+                $o_result = $result->fetch_object();
+                //print_r($o_result);
+
+                $a_params = explode(', ', trim($o_result->param_list));
+                $s_proc_call = "CALL $name (";
+
+                //print_r($a_params);
+
+                $b_first = true;
+
+                // TODO: dokoncit
+                foreach($a_params as $s_param_raw) {
+
+                    $a_param = explode($s_param_raw, ' ');
+                    $s_param_io = $a_param[0];
+                    $s_param_name = $a_param[1].substring(1);
+                    $s_param_type = $a_param[2].replace(')', '').replace('(', ' ').split(' ')[0];
+
+                    $a_value = array();
+
+                    if($s_param_io == 'IN') {
+
+                        if($o_param[$s_param_name]) {
+
+                            $s_value = $o_param[$s_param_name];
+
+                            if(!$s_value) {
+                                $s_value = 'NULL';
+                                $s_param_type = '';
+                            }
+
+                            switch($s_param_type) {
+                                case 'int': $a_value[] = $s_value; break;
+                                case 'datetime':
+                                case 'varchar':
+                                case 'text':
+                                    $a_value[] = ("'".$s_value."'");
+                                    break;
+                                default: $a_value[] = $s_value;
+                            }
+
+                        } else {
+                            $a_value[] = 'NULL';
+                        }
+
+                        foreach($a_value as $s_value) {
+                            if(!$b_first) {
+                                $s_proc_call += ',';
+                            }
+                            $b_first = false;
+                            $s_proc_call .= s_value;
+                        });
+                    }
+                });
+
+                $result->close();
+            }
+
+
+            $s_proc_call += ');';
+
+
+            //o_conn.query(s_proc_call, function (err, rows, sql) {
+            //    cb(err, rows, sql);
+            //});
+
+            echo "Done.";
+            exit;
+
+
+
+
+
+            $s_params = '';
+
+            $i = 0;
+            foreach($a_params as $param) {
+                if($i++)
+                    $s_params .= ', ';
+                $s_params .= "'$param'";
+            }
+
+            $query = " CALL $name($s_params);".LN;
+
+            $a_output = array();
+            $a_result = array();
+
+            if(mysqli_multi_query($o_db, $query)) {
+                do {
+                    $result = mysqli_store_result($o_db);
+
+                        if(is_object($result) || is_array($result))
+                        {
+                            while ($row = $result->fetch_object())
+                                $a_result[] = $row;
+                        }
+                        else
+                            $a_result = $result;
+
+                        $a_output[] = array(
+                            'num_rows' => $result->num_rows,
+                            'current_field' => $result->current_field,
+                            'field_count' => $result->field_count,
+                            'result' => $a_result,
+                            'error' => $o_db->error,
+                            'query' => $query
+                        );
+
+                        unset($a_result);
+
+                        if(is_object($result))
+                                $result->free_result();
+
+                }
+                while(mysqli_more_results($o_db) && mysqli_next_result($o_db));
+            } else {
+                $a_output[] = array(
+                    'error' => $o_db->error,
+                    'query' => $query
+                );
+            }
+
+            $o_db->close();
+
+            return $a_output;
+
+        }
+        */
+
+
+        /**
          * Example of JS Stored procedure wrapper
          * @param o_conn
          * @param s_proc_name

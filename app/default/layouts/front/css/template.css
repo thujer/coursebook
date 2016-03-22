@@ -38,6 +38,10 @@ td {
     padding-right: 30px;
 }
 
+input {
+    border-radius: 5px;
+}
+
 #copyleft, #poweright{
     display:block;
     padding:10px 15px 0 15px;
@@ -117,5 +121,10 @@ div#content {
 
 .width-md {
     width: 20%;
+}
+
+.glyphicon {
+    font-size: 18px;
+    line-height: 18px;
 }
 

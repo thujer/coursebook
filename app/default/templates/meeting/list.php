@@ -13,6 +13,7 @@
         <tr>
             <th>Číslo</th>
             <th>Název setkání</th>
+            <th>Kdy</th>
         </tr>
         <?php
         foreach($a_meeting as $o_meeting) {
@@ -20,6 +21,7 @@
             <tr>
                 <td><?=$o_meeting->id_meeting;?></td>
                 <td><a href="/meeting/detail?nl_id_meeting=<?=$o_meeting->id_meeting;?>" data-id="load_meeting" data-item="<?=$o_meeting->id_meeting;?>"><?=$o_meeting->s_name;?></a></td>
+                <td><?=date$o_meeting->dt_when;?></td>
             </tr>
             <?php
         }
