@@ -2,20 +2,20 @@
 
     namespace Runtime\App\Template;
 
-    $o_meeting = $this->a_template['o_result'];
+    $o_result = $this->a_template['o_result'];
     $a_person = $this->a_template['a_person'];
     $a_person_standin = $this->a_template['a_person_standin'];
 ?>
 
 <div class="page-header">
-    <h1 title="ID:<?=$o_meeting->nl_id_meeting;?>"><?=$o_meeting->s_name;?></h1>
-    <p>Datum konání: <?=$o_meeting->dt_when;?></p>
-    <p><?=$o_meeting->s_detail;?></p>
+    <h1><?=$o_result->s_name;?></h1>
+    <p>Datum konání: <?=$o_result->dt_when;?></p>
+    <p><?=$o_result->s_detail;?></p>
 </div>
 
 <form>
 <h2>Účastníci</h2>
-<p>Maximální počet lidí: <?=$o_meeting->nl_people_max;?></p>
+<p>Maximální počet lidí: <?=$o_result->nl_people_max;?></p>
 <table class="table table-hover" data-type="wrapper">
     <?php
     if(is_array($a_person) && count($a_person)) {
@@ -50,7 +50,6 @@
     ?>
     <tr class="hidden" data-target="add_person">
         <td colspan="3">
-            <input type="hidden" placeholder="" name="nl_id_meeting" value="<?=$o_meeting->nl_id_meeting;?>" />
             <input type="hidden" placeholder="" name="nl_id_person" value="0" />
             <input type="text" placeholder="Jméno a příjmení" name="s_name" />
             <input type="text" placeholder="Váš telefon" name="s_phone" />
@@ -63,7 +62,7 @@
         </td>
     </tr>
     <?php
-        if(count($a_person) < $o_meeting->nl_people_max) {
+        if(count($a_person) < $o_result->nl_people_max) {
             ?>
             <tr data-action="add_person">
                 <td colspan="6"><i class="glyphicon glyphicon-plus-sign"></i> Přidat se</td>
@@ -74,7 +73,7 @@
 </table>
 
     <?php
-    if(count($a_person) >= $o_meeting->nl_people_max) {
+    if(count($a_person) >= $o_result->nl_people_max) {
         ?>
         <p>Dosaženo maximálního počtu účastníků, pokud máš zájem, můžeš se přidat jako náhradník. V případě uvolnění místa budeš informován e-mailem.</p>
         <?php
@@ -83,8 +82,8 @@
 </form>
 
 <?php
-//echo count($a_person) . ' vs ' . $o_meeting->nl_people_max;
-if(count($a_person) >= $o_meeting->nl_people_max) {
+//echo count($a_person) . ' vs ' . $o_result->nl_people_max;
+if(count($a_person) >= $o_result->nl_people_max) {
     ?>
     <form>
         <h2>Náhradníci</h2>
@@ -120,7 +119,6 @@ if(count($a_person) >= $o_meeting->nl_people_max) {
             ?>
             <tr class="hidden" data-target="add_person">
                 <td colspan="3">
-                    <input type="hidden" placeholder="" name="nl_id_meeting" value="0"/>
                     <input type="hidden" placeholder="" name="nl_id_person" value="0"/>
                     <input type="text" placeholder="Jméno a příjmení" name="s_name"/>
                     <input type="text" placeholder="Váš telefon" name="s_phone"/>
@@ -204,15 +202,14 @@ if(count($a_person) >= $o_meeting->nl_people_max) {
 
         var o_ajax_params = {};
 
-        //o_ajax_params['b_ajax'] = 1;
-        //o_ajax_params['nl_id_meeting'] = ;
+        o_ajax_params['b_ajax'] = 1;
 
         $(this).closest('form').find('input').each(function(nl_ix, e_input) {
             o_ajax_params[$(e_input).attr('name')] = $(e_input).val();
         })
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             data: o_ajax_params,
             url: '/meeting/store-person',
             cache: false,

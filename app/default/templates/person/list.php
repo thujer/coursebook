@@ -24,8 +24,8 @@
         foreach($a_person as $o_person) {
             ?>
             <tr>
-                <td><?=$o_person->id_person;?></td>
-                <td><a href="/person/detail?id_child=<?=$o_person->id_person;?>" data-id="load_person" data-item="<?=$o_person->id_person;?>"><?=$o_person->s_name;?> <?=$o_person->s_lastname;?></a></td>
+                <td><?=$o_person->nl_id_person;?></td>
+                <td><a href="/person/detail?id_child=<?=$o_person->nl_id_person;?>" data-id="load_person" data-item="<?=$o_person->nl_id_person;?>"><?=$o_person->s_name;?> <?=$o_person->s_lastname;?></a></td>
                 <td><?=$o_person->s_phone;?></td>
                 <td><?=$o_person->s_email;?></td>
                 <td><?=$o_person->s_note;?></td>
@@ -58,8 +58,8 @@
         foreach($a_person_standin as $o_person) {
             ?>
             <tr>
-                <td><?=$o_person->id_person;?></td>
-                <td><a href="/person/detail?id_child=<?=$o_person->id_person;?>" data-id="load_person" data-item="<?=$o_person->id_person;?>"><?=$o_person->s_name;?> <?=$o_person->s_lastname;?></a></td>
+                <td><?=$o_person->nl_id_person;?></td>
+                <td><a href="/person/detail?id_child=<?=$o_person->nl_id_person;?>" data-id="load_person" data-item="<?=$o_person->nl_id_person;?>"><?=$o_person->s_name;?> <?=$o_person->s_lastname;?></a></td>
                 <td><?=$o_person->s_phone;?></td>
                 <td><?=$o_person->s_email;?></td>
                 <td><?=$o_person->s_note;?></td>

@@ -19,9 +19,9 @@
         foreach($a_meeting as $o_meeting) {
             ?>
             <tr>
-                <td><?=$o_meeting->id_meeting;?></td>
-                <td><a href="/meeting/detail?nl_id_meeting=<?=$o_meeting->id_meeting;?>" data-id="load_meeting" data-item="<?=$o_meeting->id_meeting;?>"><?=$o_meeting->s_name;?></a></td>
-                <td><?=date$o_meeting->dt_when;?></td>
+                <td><?=$o_meeting->nl_id_meeting;?></td>
+                <td><a href="/meeting/detail?nl_id_meeting=<?=$o_meeting->nl_id_meeting;?>" data-id="load_meeting" data-item="<?=$o_meeting->nl_id_meeting;?>"><?=$o_meeting->s_name;?></a></td>
+                <td><?=$o_meeting->dt_when;?></td>
             </tr>
             <?php
         }
@@ -39,12 +39,12 @@
 <script type="text/javascript">
 
     $('*[data-id="load_meeting"]').click(function(e) {
-        var id_meeting = $(this).attr('data-item');
+        var nl_id_meeting = $(this).attr('data-item');
         $.ajax( {
             url: '/meeting/detail',
             data: {
                 b_ajax: true,
-                nl_id_meeting: id_meeting
+                nl_id_meeting: nl_id_meeting
             },
             success: function(response, status) {
                 $('*[data-id="content"]').html(response);

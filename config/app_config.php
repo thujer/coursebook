@@ -11,10 +11,26 @@
     define('CONFIG_APP_NAME',                   'MeetingBook');                         // Textový název aplikace, použito jako default title
     define('CONFIG_APP_ID',                     'default');                             // subdir aplikace /app/<subdir>
 
-    error_reporting(E_ALL ^ E_NOTICE);
-    //error_reporting(E_ALL);
-    ini_set('display_errors',   true);
-    ini_set('html_errors',      true);
+    switch($_GET['debug']) {
+        case 2:
+            error_reporting(E_ALL);
+            ini_set('display_errors',   true);
+            ini_set('html_errors',      true);
+            break;
+
+        case 1:
+            error_reporting(E_ALL ^ E_NOTICE);
+            ini_set('display_errors',   true);
+            ini_set('html_errors',      true);
+            break;
+
+        default:
+            error_reporting();
+            ini_set('display_errors',   false);
+            ini_set('html_errors',      false);
+            break;
+    }
+
 
     define('CONFIG_DOMAIN',                     $_SERVER["HTTP_HOST"]);
     define('CONFIG_WEB_ROOT',                   "http://".CONFIG_DOMAIN);

@@ -57,7 +57,7 @@
             url: '/person/getclassmate',
             data: {
                 b_ajax: true,
-                child_id: parseInt('<?=$o_child->id_person;?>'),
+                child_id: parseInt('<?=$o_child->nl_id_person;?>'),
             },
             success: function(response, status) {
                 $('*[data-id="classmate"]').html(response);

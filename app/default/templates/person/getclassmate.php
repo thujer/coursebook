@@ -21,8 +21,8 @@
         foreach($a_classmate as $o_classmate) {
             ?>
             <tr>
-                <td><?=$o_classmate->id_person;?></td>
-                <td><a href="/person/detail?id_child=<?=$o_classmate->id_person;?>"><?=$o_classmate->s_classmate_name;?></a></td>
+                <td><?=$o_classmate->nl_id_person;?></td>
+                <td><a href="/person/detail?id_child=<?=$o_classmate->nl_id_person;?>"><?=$o_classmate->s_classmate_name;?></a></td>
                 <td><?=$o_classmate->s_hobby_group_name;?></td>
             </tr>
             <?php

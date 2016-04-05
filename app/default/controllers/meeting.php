@@ -23,7 +23,7 @@ class meeting extends controller {
 
         $db = database::get_instance();
 
-        $nl_id_meeting = request::get_var('nl_id_meeting', 'GET', 0);
+        $nl_id_meeting = request::get_var('nl_id_meeting', 'REQUEST', 0);
 
         if(empty($nl_id_meeting)) {
             return "Doplňte prosím hodnotu nl_id_meeting !";
@@ -31,9 +31,18 @@ class meeting extends controller {
 
         // Call stored procedure - Get person details
         $o_result = $db->call_stored_proc('get_meeting', array(
-            'inl_id_meeting' => $nl_id_meeting
+            'nl_id_meeting' => $nl_id_meeting
         ));
 
+        //dbg($o_result);
+
+        /*
+        $o_result = $db->call_stored_proc('get_meeting', array(
+            'inl_id_meeting' => $nl_id_meeting
+        ));
+        */
+
+        /*
         // Get persons
         $a_person = $db->call_stored_proc('get_person_meeting_group_list', array(
             nl_id_meeting => $nl_id_meeting,
@@ -44,6 +53,19 @@ class meeting extends controller {
         $a_person_standin = $db->call_stored_proc('get_person_meeting_group_list', array(
             nl_id_meeting => $nl_id_meeting,
             nl_id_meeting_group => 2
+        ));
+        */
+
+        // Get persons
+        $a_person = $db->call_stored_proc('get_meeting_person', array(
+            nl_id_meeting => $nl_id_meeting,
+            b_after_limit => 0
+        ));
+
+        // Get stand-in persons
+        $a_person_standin = $db->call_stored_proc('get_meeting_person', array(
+            nl_id_meeting => $nl_id_meeting,
+            b_after_limit => 1
         ));
 
         return $this->render_view(array(
@@ -62,8 +84,10 @@ class meeting extends controller {
         $db = database::get_instance();
 
         $b_ajax = request::get_var('b_ajax', 'REQUEST', 0);
-        if($b_ajax)
+        if($b_ajax) {
             layout::get_instance()->disable();
+        }
+
 
         // Get persons
         $a_meeting = $db->call_stored_proc('get_meeting_list', array(
@@ -82,13 +106,36 @@ class meeting extends controller {
         $db = database::get_instance();
 
         $b_ajax = request::get_var('b_ajax', 'REQUEST', 0);
-        if($b_ajax)
+
+        $a_result = $db->call_stored_proc('store_person', $_REQUEST);
+
+        switch($a_result[1]['result'][0]->os_id_operation) {
+            case 'insert': $s_message = 'Uložen nový zájemce'; break;
+            case 'update': $s_message = 'Údaje osoby byly aktualizovány'; break;
+            default: $s_message = 'Neznámá operace !'; break;
+        }
+
+        $a_result = $db->call_stored_proc('store_meeting_person', $_REQUEST + array(
+                'nl_id_person' => $a_result[0]['result'][0]->onl_id_person
+        ));
+
+        /*
+        dbg($a_result[0]['result'][0]->onl_id_person);
+        dbg($a_result[1]['result'][0]->os_id_operation);
+        dbg($s_message);
+        dbg($a_result);
+        */
+
+        //request::set_var('nl_id_meeting', , 'REQUEST');
+        $html_result = $this->detailAction();
+
+        if($b_ajax) {
             layout::get_instance()->disable();
+            echo $html_result;
+            exit;
+        }
 
-        //$a_result = $db->call_stored_proc('get_meeting_list', $_REQUEST);
-        $a_result = $db->proc('store_meeting_person', $_REQUEST);
-
-        print_r($a_result);
+        return $html_result;
     }
 
 
