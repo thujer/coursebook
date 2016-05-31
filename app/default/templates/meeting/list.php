@@ -47,10 +47,24 @@
                 nl_id_meeting: nl_id_meeting
             },
             success: function(response, status) {
+                var o_history = {
+                    s_controller: "meeting",
+                    s_action: "detail",
+                    nl_id_meeting: nl_id_meeting
+                };
+                history.pushState(o_history, "Meeting - detail", "/meeting/detail?nl_id_meeting="+nl_id_meeting);
+
                 $('*[data-id="content"]').html(response);
             }
         });
         e.preventDefault();
     })
+
+    /**
+    TODO:
+    window.onpopstate = function(event) {
+        alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    };
+    */
 
 </script>

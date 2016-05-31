@@ -12,9 +12,11 @@
         { "type": "css", "media": "screen", "href": "css/bootstrap/3.2.0/bootstrap.min.css", "php_parse": false },
         { "type": "css", "media": "screen", "href": "css/bootstrap/3.2.0/bootstrap-theme.min.css", "php_parse": false },
         { "type": "css", "media": "screen", "href": "css/font-awesome.min.css", "php_parse": false },
+        { "type": "css", "media": "screen", "href": "css/intlTelInput.css", "php_parse": false },
         { "type": "css", "media": "screen", "href": "css/template.css", "php_parse": false },
 
         { "type": "js", "id": "jquery", "src": "js/jquery/jquery-1.9.1.min.js", "group": "start" },
-        { "type": "js", "id": "jquery", "src": "js/bootstrap/3.2.0/bootstrap.min.js", "group": "end" }
+        { "type": "js", "id": "jquery", "src": "js/bootstrap/3.2.0/bootstrap.min.js", "group": "end" },
+        { "type": "js", "id": "jquery", "src": "js/telinput/intlTelInput.min.js", "group": "end" }
     ]
 }

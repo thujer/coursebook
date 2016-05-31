@@ -128,3 +128,6 @@ div#content {
     line-height: 18px;
 }
 
+.iti-flag {
+    background-image: url("../img/flags.png");
+}

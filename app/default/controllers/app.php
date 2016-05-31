@@ -49,7 +49,7 @@
                     $s_action_raw = 'default';
 
                 $s_action = $s_action_raw . 'Action';
-                $a_item = $uri_params['a_item'];
+                $a_item = isset($uri_params['a_item']) ? $uri_params['a_item'] : array();
 
                 $o_controller = new $s_controller($s_controller_raw, $s_action_raw, $a_item);
 

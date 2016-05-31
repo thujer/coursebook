@@ -12,10 +12,12 @@
     require_once "class/request.php";
     require_once "class/css.php";
 
-    error_reporting(E_ALL ^ E_NOTICE);
-    ini_set('display_errors',   true);
-    ini_set('html_errors',      true);
-    
+    if(CONFIG_DEBUG) {
+        error_reporting(E_ALL ^ E_NOTICE);
+        ini_set('display_errors',   true);
+        ini_set('html_errors',      true);
+    }
+
     $file = request::get_var('id');
     if(file_exists($file))
     {

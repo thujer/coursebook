@@ -17,7 +17,7 @@
      */
     function dbg($array, $title = "DEBUG REPORT", $return_output = false)
     {
-        if($_GET['test']) {
+        if(CONFIG_DEBUG) {
             $html = '';
 
             if(!headers_sent())
