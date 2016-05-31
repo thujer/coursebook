@@ -131,3 +131,8 @@ div#content {
 .iti-flag {
     background-image: url("../img/flags.png");
 }
+
+input.error {
+    border-color: red;
+}
+

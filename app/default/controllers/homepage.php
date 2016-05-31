@@ -15,6 +15,9 @@
 
         public function defaultAction() {
 
+            header('Location: /meeting/list');
+            exit;
+
             return $this->render_view(array(
             ));
         }

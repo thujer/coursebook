@@ -135,7 +135,7 @@ class meeting extends controller {
 
                 case 'insert':
 
-                    $s_pin = \tokens::get_random_string(5);
+                    $s_pin = strtoupper(\tokens::get_random_string(4));
 
                     //$a_message[] = 'Založen nový kontakt '.$nl_id_person;
 
@@ -149,7 +149,26 @@ class meeting extends controller {
                         $a_error[] = $a_result[0]['error'];
                     }
 
-                    $a_message[] = "Kontakt $nl_id_person přidán do seznamu zájemců";
+                    // Odeslání SMS
+                    $s_pin = $a_result[0]['result'][0]->s_pin;
+
+                    $a_person = $db->call_stored_proc('get_person', array(
+                        'nl_id_person' => $nl_id_person
+                    ));
+                    $a_person_phone = $a_person[0]['result'][0]->s_phone;
+
+                    $o_result = \sms::send($a_person_phone, "Vas potvrzovaci kod: $s_pin zadejte prosim do potvrzovaciho pole na webu.");
+                    //$o_result =  '{"status":"OK","number_sent":1,"to":"00420777748740","sms_count":1,"credits_used":3.8,"remaining_credit":164.8,"reference":{"1":"ic39x1tx2em4pqvk3rf"}}';
+
+                    $o_result = json_decode($o_result);
+
+                    if($o_result->status == 'OK') {
+                        $a_message[] = "SMS s kódem pro přihlášení odeslána na číslo {$o_result->to}";
+                    } else {
+                        $a_message[] = "Při odesílání SMS zprávy na číslo {$o_result->to} nastaly potíže";
+                    }
+
+
 
                     break;
 
