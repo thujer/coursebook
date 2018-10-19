@@ -1,5 +1,6 @@
  MeetingBook
 ===============
 
-People meeting reservation web application
+Web application for people meeting planning with SMS gateway connection.
+
 
